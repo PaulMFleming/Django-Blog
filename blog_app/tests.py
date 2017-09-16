@@ -11,6 +11,8 @@ class PostTests(TestCase):
     """
     Here we'll define the tests
     that we'll run against our Post model
+    to run the tests:
+    python manage.py test blog_app
     """
 
     # creates an instance of the Post class and initializes it
