@@ -21,6 +21,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True) 
     # Record how often a post is seen
     views = models.IntegerField(default=0)
+    tag = models.CharField(max_length=30, blank=True, null=True)
 
     # function we can call to update our database
     # when we do decide to our blog entry
