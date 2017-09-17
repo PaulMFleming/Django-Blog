@@ -19,6 +19,8 @@ class Post(models.Model):
     created_date = models. DateTimeField(auto_now_add=True) 
     # we can choose not to publish a blog post immediately
     published_date = models.DateTimeField(blank=True, null=True) 
+    # Record how often a post is seen
+    views = models.IntegerField(default=0)
 
     # function we can call to update our database
     # when we do decide to our blog entry
