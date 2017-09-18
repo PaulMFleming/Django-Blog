@@ -44,7 +44,7 @@ def new_post(request):
     redirects us to our new blog post
     """
     if request.method == 'POST':
-        form = BlogPostForm(request.POST)
+        form = BlogPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -53,4 +53,26 @@ def new_post(request):
             return redirect(post_detail, post.pk)
     else:
         form = BlogPostForm()
+    return render(request, 'blogpostform.html', {'form': form})
+
+
+def edit_post(request, id):
+    """
+    Create a view that uses POST and GET
+    methods to either give us the post we 
+    want to edit in a form (GET) or to save
+    the post and redirect us to the updated
+    version of the post (POST)
+    """
+    post = get_object_or_404(Post, pk=id)
+    if request.method == "POST":
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect(post_detail, post.pk)
+    else:
+        form = BlogPostForm(instance=post)
     return render(request, 'blogpostform.html', {'form': form})
