@@ -126,5 +126,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+# Disqus for handling the comment system
 DISQUS_WEBSITE_SHORTNAME = 'djangoblog'
 SITE_ID = 1
+
+# Media for our images
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
